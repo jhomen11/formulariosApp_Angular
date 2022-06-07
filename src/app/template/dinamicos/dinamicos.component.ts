@@ -20,6 +20,7 @@ interface Favoritos{
 })
 export class DinamicosComponent {
 
+  nuevoJuego: string = ''
   persona: Persona = {
     nombre: 'Jhonny',
     favoritos: [
@@ -34,6 +35,15 @@ export class DinamicosComponent {
   nombreValido():boolean{
     return this.miFormulario?.controls['nombre']?.invalid
             && this.miFormulario?.controls['nombre'].touched
+  }
+
+  agregarJuego(){
+    const nuevoFavorito: Favoritos = {
+      id: Date.now(),
+      nombre: this.nuevoJuego
+    }
+    this.persona.favoritos.push({...nuevoFavorito})
+    this.nuevoJuego = ''
   }
 
   guardar(){
